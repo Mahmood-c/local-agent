@@ -1,0 +1,57 @@
+{
+  "name": "local-agent",
+  "displayName": "Local Agent",
+  "description": "A local agent using LM studio",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.106.1"
+  },
+  "categories": [
+    "AI"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "local-agent",
+          "title": "Local Agent",
+          "icon": "./resources/icons/bot.svg"
+        }
+      ]
+    },
+    "views": {
+      "local-agent": [
+        {
+          "id": "local-agent-view",
+          "name": "Local Agent",
+          "type": "webview",
+          "icon": "./resources/icons/bot.svg"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build:front": "cd front && npm run build",
+    "watch:front": "cd front && npm run watch",
+    "build:extension": "webpack --mode production --devtool hidden-source-map",
+    "watch:extension": "webpack --watch",
+    "build": "npm run build:front && npm run build:extension",
+    "watch": "concurrently \"npm run watch:front\" \"npm run watch:extension\""
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.106.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.1",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
+  }
+}
