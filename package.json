@@ -9,7 +9,9 @@
   "categories": [
     "AI"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "viewsContainers": {
@@ -38,7 +40,9 @@
     "build:extension": "webpack --mode production --devtool hidden-source-map",
     "watch:extension": "webpack --watch",
     "build": "npm run build:front && npm run build:extension",
-    "watch": "concurrently \"npm run watch:front\" \"npm run watch:extension\""
+    "watch": "concurrently \"npm run watch:front\" \"npm run watch:extension\"",
+    "server": "tsx ./src/mcp-server.ts",
+    "server:inspect": "npx @modelcontextprotocol/inspector"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
@@ -49,9 +53,16 @@
     "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
     "ts-loader": "^9.5.4",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.3",
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/inspector": "^0.17.5",
+    "@modelcontextprotocol/sdk": "^1.24.3",
+    "commander": "^14.0.2",
+    "zod": "^4.1.13"
   }
 }
